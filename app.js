@@ -23,6 +23,7 @@ request(
     {url:`http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
      json:true
 },(error,response,body)=>{
+  //error handling  
   if  (error){
       console.log('Unable to connect to google servers');
   }else if(body.status === 'ZERO_RESULTS'){

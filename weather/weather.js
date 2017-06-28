@@ -1,16 +1,16 @@
 const request= require('request');
 
-var getWeather=()=>{
-
-
+var getWeather=(lat,lng ,callback)=>{
 request({
-    url:'https://api.darksky.net/forecast/ac5bb14864d28c1f73575f86f20227f5/28.6589251,77.1457614',
+    url:`https://api.darksky.net/forecast/ac5bb14864d28c1f73575f86f20227f5/${lat},${lng}`,
     json:true
 },(error,response,body)=>{
-    if  (!error && response.statusCode === 200){
-        console.log(body.currently.temperature);
+    if(!error && response.statusCode === 200){
+        callback(undefined,{
+            temperature:body.currently.temperature,
+        apparentTemperature:body.currently.apparentTemperature});
   }else {
-       console.log('Unable to fetch weather');
+       callback('Unable to fetch weather');
   }
 });
 }

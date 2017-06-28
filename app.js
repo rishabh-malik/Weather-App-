@@ -24,6 +24,10 @@ const argv=yargs
 //  }
 // });
 
-weather.getWeather();
-
-
+weather.getWeather(39,-75,(errorMessage,weatherResults)=>{
+    if(errorMessage){
+        console.log(errorMessage);
+    }else{
+        console.log(JSON.stringify(weatherResults,undefined,2));
+    }
+});
